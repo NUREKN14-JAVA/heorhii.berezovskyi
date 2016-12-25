@@ -1,8 +1,6 @@
 package kn_14_6.berezovskyi.db;
 
 import junit.framework.TestCase;
-import kn_14_6.berezovskyi.db.DaoFactory;
-import kn_14_6.berezovskyi.db.UserDao;
 
 public class DaoFactoryTest extends TestCase {
 

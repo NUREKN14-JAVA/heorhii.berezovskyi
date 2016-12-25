@@ -9,10 +9,6 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
 
-import kn_14_6.berezovskyi.db.ConnectionFactory;
-import kn_14_6.berezovskyi.db.ConnectionFactoryImpl;
-import kn_14_6.berezovskyi.db.DatabaseException;
-import kn_14_6.berezovskyi.db.HsqldbUserDao;
 import kn_14_6.berezovskyi.User;
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {

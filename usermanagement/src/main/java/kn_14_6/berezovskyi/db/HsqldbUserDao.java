@@ -19,6 +19,7 @@ class HsqldbUserDao implements UserDao {
 	private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
 	private static final String FIND_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users WHERE id=?";
 	private static final String SELECT_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
+	private static final String FIND_BY_NAME_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users where firstname=? AND lastname=?";
 	ConnectionFactory connectionFactory;
 
 	public ConnectionFactory getConnectionFactory() {
@@ -189,4 +190,37 @@ class HsqldbUserDao implements UserDao {
 		return result;
 	}
 
+	
+	@Override
+    public Collection<?> find(String firstName, String lastName) throws DatabaseException {
+        
+        Connection connection = connectionFactory.createConnection();
+        Collection<User> result = new LinkedList<User>();
+        PreparedStatement preparedStatement;
+        try {            
+            connection = connectionFactory.createConnection();
+            preparedStatement = connection.prepareStatement(FIND_BY_NAME_QUERY);
+            preparedStatement.setString(1,firstName);
+            preparedStatement.setString(2, lastName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getLong(1));
+                user.setFirstName(resultSet.getString(2));
+                user.setLastName(resultSet.getString(3));
+                user.setDateOfBirthd(resultSet.getDate(4).toLocalDate());
+                result.add(user);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+            
+            
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // TODO Auto-generated method stub
+        return result;
+        }
 }

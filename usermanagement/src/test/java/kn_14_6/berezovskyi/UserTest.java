@@ -3,7 +3,6 @@ package kn_14_6.berezovskyi;
 import java.time.LocalDate;
 
 import junit.framework.TestCase;
-import kn_14_6.berezovskyi.User;
 
 public class UserTest extends TestCase {
 

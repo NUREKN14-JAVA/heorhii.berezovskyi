@@ -4,9 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import kn_14_6.berezovskyi.db.ConnectionFactory;
-import kn_14_6.berezovskyi.db.DatabaseException;
-import kn_14_6.berezovskyi.db.UserDao;
 import kn_14_6.berezovskyi.User;
 
 public class MockUserDao implements UserDao {
@@ -43,4 +40,8 @@ public class MockUserDao implements UserDao {
 	public void setConnectionFactory(ConnectionFactory connectionFactory) {
 	}
 
+    public Collection<?> find(String firstName, String lastName) throws DatabaseException {
+        throw new UnsupportedOperationException();
+    }
+	
 }
